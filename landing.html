@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Студия ремонта Евгении Симаковой — ремонт квартир с персональным подходом</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg-primary:#FAF8F5;--bg-warm:#F3EDE6;--bg-accent:#2C2926;--bg-card:#FFFFFF;--text-primary:#2C2926;--text-secondary:#6B6560;--text-muted:#9A9490;--text-on-dark:#FAF8F5;--accent:#B8956A;--accent-light:#D4BC9A;--accent-hover:#A37F56;--border:#E8E2DB;--border-light:#F0EBE5;--shadow-sm:0 1px 3px rgba(44,41,38,0.06);--shadow-md:0 4px 20px rgba(44,41,38,0.08);--font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'DM Sans',-apple-system,sans-serif;--max-w:1200px;--section-py:clamp(60px,8vw,120px)}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-sans);color:var(--text-primary);background:var(--bg-primary);line-height:1.65;font-size:16px;overflow-x:hidden}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+@media(min-width:768px){.container{padding:0 40px}}
+.section-label{font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.section-title{font-family:var(--font-serif);font-size:clamp(28px,4vw,44px);font-weight:500;line-height:1.2;color:var(--text-primary);margin-bottom:20px}
+.section-subtitle{font-size:16px;color:var(--text-secondary);max-width:560px;line-height:1.7}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-family:var(--font-sans);font-size:14px;font-weight:600;letter-spacing:.5px;padding:16px 36px;border:none;border-radius:4px;cursor:pointer;text-decoration:none;transition:all .3s}
+.btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text-primary);font-family:var(--font-sans);font-size:14px;font-weight:500;padding:14px 28px;border:1.5px solid var(--border);border-radius:4px;cursor:pointer;text-decoration:none;transition:all .3s}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,248,245,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-light)}
+.header-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between}
+@media(min-width:768px){.header-inner{padding:0 40px}}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{height:36px;width:auto}
+.logo-text{font-family:var(--font-serif);font-size:16px;font-weight:600;color:var(--text-primary);letter-spacing:-.3px;line-height:1.2}
+.logo-text span{color:var(--accent)}
+@media(max-width:480px){.logo-text{font-size:13px}.logo-icon{height:30px}}
+.nav{display:none;gap:32px;align-items:center}
+@media(min-width:1024px){.nav{display:flex}}
+.nav a{font-size:13px;font-weight:500;color:var(--text-secondary);text-decoration:none;letter-spacing:.3px;transition:color .2s}
+.nav a:hover{color:var(--text-primary)}
+.header-cta{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;display:none;align-items:center;gap:6px;letter-spacing:.3px}
+.header-cta:hover{color:var(--accent-hover)}
+@media(min-width:1024px){.header-cta{display:flex}}
+.mobile-menu-btn{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+@media(min-width:1024px){.mobile-menu-btn{display:none}}
+.mobile-menu-btn span{display:block;width:22px;height:1.5px;background:var(--text-primary);transition:all .3s}
+.mobile-nav{display:none;position:fixed;top:72px;left:0;right:0;bottom:0;background:var(--bg-primary);z-index:99;padding:32px 24px}
+.mobile-nav.active{display:flex;flex-direction:column}
+.mobile-nav a{display:block;padding:16px 0;font-size:16px;font-weight:500;color:var(--text-primary);text-decoration:none;border-bottom:1px solid var(--border-light)}
+
+/* HERO */
+.hero{padding-top:72px;min-height:100vh;display:flex;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;padding:var(--section-py) 0}
+@media(min-width:768px){.hero-grid{grid-template-columns:1fr 1fr;gap:60px}}
+.hero-content{position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--bg-warm);padding:8px 16px;border-radius:100px;font-size:12px;font-weight:600;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:28px}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%}
+.hero-title{font-family:var(--font-serif);font-size:clamp(36px,5.5vw,60px);font-weight:500;line-height:1.1;color:var(--text-primary);margin-bottom:24px;letter-spacing:-.5px}
+.hero-title em{font-style:italic;color:var(--accent)}
+.hero-subtitle{font-size:clamp(16px,2vw,18px);color:var(--text-secondary);line-height:1.7;max-width:480px;margin-bottom:36px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:48px}
+.hero-meta{display:flex;gap:32px;padding-top:32px;border-top:1px solid var(--border-light)}
+.hero-meta-item{display:flex;flex-direction:column}
+.hero-meta-value{font-family:var(--font-serif);font-size:28px;font-weight:600;color:var(--text-primary)}
+.hero-meta-label{font-size:12px;color:var(--text-muted);margin-top:2px}
+.hero-visual{position:relative;border-radius:8px;overflow:hidden}
+.hero-visual img{width:100%;display:block;border-radius:8px;aspect-ratio:4/5;object-fit:cover}
+@media(min-width:768px){.hero-visual img{aspect-ratio:3/4}}
+.hero-visual-badge{position:absolute;bottom:20px;left:20px;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);padding:14px 18px;border-radius:6px;box-shadow:var(--shadow-md)}
+.hero-visual-badge-title{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+.hero-visual-badge-text{font-family:var(--font-serif);font-size:16px;color:var(--text-primary)}
+
+/* TRUST */
+.trust-bar{background:var(--bg-accent)}
+.trust-bar-inner{display:grid;grid-template-columns:repeat(2,1fr)}
+@media(min-width:768px){.trust-bar-inner{grid-template-columns:repeat(4,1fr)}}
+.trust-item{padding:28px 24px;text-align:center;border-right:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08)}
+@media(min-width:768px){.trust-item{padding:36px 24px;border-bottom:none}}
+.trust-item:last-child{border-right:none}
+.trust-value{font-family:var(--font-serif);font-size:clamp(28px,3.5vw,36px);font-weight:600;color:var(--accent-light);margin-bottom:4px}
+.trust-label{font-size:12px;color:rgba(250,248,245,0.6);letter-spacing:.5px}
+
+/* PS */
+.problem-solution{padding:var(--section-py) 0}
+.ps-header{text-align:center;max-width:640px;margin:0 auto 60px}
+.ps-header .section-subtitle{margin:0 auto}
+.ps-grid{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:768px){.ps-grid{grid-template-columns:1fr 1fr;gap:32px}}
+.ps-card{padding:32px;border-radius:8px;border:1px solid var(--border);transition:all .3s}
+.ps-card:hover{box-shadow:var(--shadow-sm)}
+.ps-card--problem{background:var(--bg-card)}
+.ps-card--solution{background:var(--bg-warm);border-color:transparent}
+.ps-card-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:18px}
+.ps-card--problem .ps-card-icon{background:#FEF2F2}
+.ps-card--solution .ps-card-icon{background:rgba(184,149,106,0.15)}
+.ps-card-title{font-family:var(--font-serif);font-size:20px;font-weight:600;margin-bottom:8px}
+.ps-card-text{font-size:14px;color:var(--text-secondary);line-height:1.7}
+
+/* ABOUT */
+.about{padding:var(--section-py) 0;background:var(--bg-warm)}
+.about-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
+@media(min-width:768px){.about-grid{grid-template-columns:5fr 7fr;gap:64px}}
+.about-photo{position:relative;border-radius:8px;overflow:visible}
+.about-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;border-radius:8px;display:block}
+.about-photo-accent{position:absolute;bottom:-12px;right:-12px;width:100px;height:100px;border:2px solid var(--accent-light);border-radius:8px;z-index:-1}
+@media(min-width:768px){.about-photo-accent{width:140px;height:140px;bottom:-16px;right:-16px}}
+.about-name{font-family:var(--font-serif);font-size:clamp(28px,4vw,40px);font-weight:500;margin-bottom:8px;line-height:1.2}
+.about-role{font-size:14px;color:var(--accent);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px}
+.about-text{font-size:16px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px}
+.about-quote{padding:24px;border-left:3px solid var(--accent);background:rgba(255,255,255,0.5);border-radius:0 6px 6px 0;margin-bottom:32px}
+.about-quote p{font-family:var(--font-serif);font-size:18px;font-style:italic;color:var(--text-primary);line-height:1.6}
+.about-traits{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.about-trait{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-secondary)}
+.about-trait::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--accent-light);flex-shrink:0}
+
+/* PORTFOLIO */
+.portfolio{padding:var(--section-py) 0}
+.portfolio-header{display:flex;flex-direction:column;gap:16px;margin-bottom:48px}
+@media(min-width:768px){.portfolio-header{flex-direction:row;justify-content:space-between;align-items:flex-end}}
+.project-section{margin-bottom:64px}
+.project-section:last-child{margin-bottom:0}
+.project-name{font-family:var(--font-serif);font-size:clamp(24px,3vw,32px);font-weight:600;color:var(--text-primary)}
+.project-desc{margin-top:8px;font-size:15px;color:var(--text-secondary);line-height:1.7;max-width:640px}
+.gallery-strip{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px;scrollbar-width:none;margin-top:20px}
+.gallery-strip::-webkit-scrollbar{display:none}
+.gallery-strip img{flex:0 0 auto;height:280px;width:auto;object-fit:cover;border-radius:6px;scroll-snap-align:start;transition:transform .3s}
+.gallery-strip img:hover{transform:scale(1.01)}
+@media(min-width:768px){.gallery-strip img{height:360px}}
+.project-detail-row{display:flex;flex-wrap:wrap;gap:24px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border-light)}
+.project-detail{font-size:13px;color:var(--text-muted)}
+.project-detail strong{display:block;font-size:15px;color:var(--text-primary);font-weight:600;margin-bottom:2px}
+.project-divider{height:1px;background:var(--border);margin:48px 0}
+
+/* PROCESS */
+.process{padding:var(--section-py) 0;background:var(--bg-accent);color:var(--text-on-dark)}
+.process .section-title{color:var(--text-on-dark)}
+.process .section-subtitle{color:rgba(250,248,245,0.6)}
+.process-header{text-align:center;max-width:600px;margin:0 auto 60px}
+.process-steps{display:grid;grid-template-columns:1fr;gap:2px}
+@media(min-width:768px){.process-steps{grid-template-columns:repeat(5,1fr)}}
+.process-step{padding:32px 24px;background:rgba(255,255,255,0.03);border-radius:6px;text-align:center;transition:all .3s;position:relative}
+.process-step:hover{background:rgba(255,255,255,0.07)}
+.process-step-number{font-family:var(--font-serif);font-size:36px;font-weight:600;color:var(--accent-light);margin-bottom:12px;opacity:.5}
+.process-step-title{font-family:var(--font-serif);font-size:18px;font-weight:600;margin-bottom:8px;color:var(--text-on-dark)}
+.process-step-text{font-size:13px;color:rgba(250,248,245,0.5);line-height:1.6}
+.process-step-arrow{display:none;position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--accent-light);opacity:.3;font-size:20px;z-index:2}
+@media(min-width:768px){.process-step-arrow{display:block}}
+.process-step:last-child .process-step-arrow{display:none}
+
+/* REVIEWS */
+.reviews{padding:var(--section-py) 0}
+.reviews-header{text-align:center;max-width:600px;margin:0 auto 48px}
+.reviews-grid{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:768px){.reviews-grid{grid-template-columns:repeat(3,1fr)}}
+.review-card{padding:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;transition:all .3s}
+.review-card:hover{box-shadow:var(--shadow-sm)}
+.review-stars{display:flex;gap:2px;margin-bottom:16px;color:var(--accent);font-size:14px}
+.review-text{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px;font-style:italic}
+.review-author{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--border-light)}
+.review-avatar{width:40px;height:40px;border-radius:50%;background:var(--bg-warm);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:16px;font-weight:600;color:var(--accent);flex-shrink:0}
+.review-author-name{font-size:14px;font-weight:600;color:var(--text-primary)}
+.review-author-project{font-size:12px;color:var(--text-muted)}
+
+/* WHY US */
+.why-us{padding:var(--section-py) 0;background:var(--bg-warm)}
+.why-us-header{text-align:center;max-width:600px;margin:0 auto 48px}
+.why-us-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:768px){.why-us-grid{grid-template-columns:repeat(3,1fr)}}
+.why-card{padding:32px;background:var(--bg-card);border-radius:8px;border:1px solid var(--border);transition:all .3s}
+.why-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.why-card-icon{width:44px;height:44px;border-radius:50%;background:rgba(184,149,106,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px}
+.why-card-title{font-family:var(--font-serif);font-size:18px;font-weight:600;margin-bottom:8px}
+.why-card-text{font-size:14px;color:var(--text-secondary);line-height:1.7}
+
+/* PRICING */
+.pricing{padding:var(--section-py) 0}
+.pricing-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
+@media(min-width:768px){.pricing-grid{grid-template-columns:1fr 1fr}}
+.pricing-list{list-style:none;margin:24px 0 32px}
+.pricing-list li{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border-light);font-size:15px;color:var(--text-secondary);line-height:1.6}
+.pricing-list li::before{content:'✓';color:var(--accent);font-weight:700;flex-shrink:0;margin-top:1px}
+.pricing-card{background:var(--bg-accent);border-radius:12px;padding:40px;color:var(--text-on-dark);text-align:center}
+.pricing-card-title{font-family:var(--font-serif);font-size:24px;font-weight:500;margin-bottom:12px}
+.pricing-card-text{font-size:14px;color:rgba(250,248,245,0.6);line-height:1.7;margin-bottom:28px}
+.pricing-card .btn-primary{width:100%;justify-content:center}
+.pricing-card-note{font-size:12px;color:rgba(250,248,245,0.4);margin-top:16px}
+
+/* FAQ */
+.faq{padding:var(--section-py) 0;background:var(--bg-warm)}
+.faq-header{text-align:center;max-width:600px;margin:0 auto 48px}
+.faq-list{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-question{width:100%;background:none;border:none;text-align:left;padding:24px 40px 24px 0;font-family:var(--font-sans);font-size:16px;font-weight:600;color:var(--text-primary);cursor:pointer;position:relative;line-height:1.4}
+.faq-question::after{content:'+';position:absolute;right:0;top:24px;font-size:20px;font-weight:400;color:var(--accent);transition:transform .3s}
+.faq-item.active .faq-question::after{content:'−'}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+.faq-item.active .faq-answer{max-height:300px;padding-bottom:24px}
+.faq-answer p{font-size:15px;color:var(--text-secondary);line-height:1.7}
+
+/* FINAL CTA */
+.final-cta{padding:var(--section-py) 0}
+.final-cta-inner{background:var(--bg-accent);border-radius:16px;padding:clamp(40px,6vw,80px);text-align:center;position:relative;overflow:hidden}
+.final-cta-inner::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(184,149,106,0.15) 0%,transparent 70%);border-radius:50%}
+.final-cta-title{font-family:var(--font-serif);font-size:clamp(28px,4vw,44px);font-weight:500;color:var(--text-on-dark);margin-bottom:16px;position:relative}
+.final-cta-subtitle{font-size:16px;color:rgba(250,248,245,0.6);max-width:480px;margin:0 auto 36px;line-height:1.7;position:relative}
+.final-cta-form{display:flex;flex-direction:column;gap:12px;max-width:420px;margin:0 auto 24px;position:relative}
+.final-cta-form input{padding:16px 20px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.08);color:var(--text-on-dark);font-family:var(--font-sans);font-size:15px;outline:none;transition:border-color .3s}
+.final-cta-form input::placeholder{color:rgba(250,248,245,0.35)}
+.final-cta-form input:focus{border-color:var(--accent-light)}
+.final-cta-form .btn-primary{width:100%;justify-content:center}
+.final-cta-or{font-size:13px;color:rgba(250,248,245,0.35);margin:8px 0;position:relative}
+.final-cta-messengers{display:flex;justify-content:center;gap:12px;position:relative;flex-wrap:wrap}
+.messenger-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;color:rgba(250,248,245,0.7);font-size:13px;font-weight:500;text-decoration:none;transition:all .3s;font-family:var(--font-sans)}
+.messenger-btn:hover{border-color:var(--accent-light);color:var(--text-on-dark)}
+.final-cta-safe{font-size:12px;color:rgba(250,248,245,0.3);margin-top:20px;position:relative}
+
+/* FOOTER */
+.footer{padding:48px 0 32px;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:32px;margin-bottom:40px}
+@media(min-width:768px){.footer-grid{grid-template-columns:2fr 1fr 1fr 1fr}}
+.footer-brand-text{font-size:14px;color:var(--text-muted);line-height:1.6;max-width:280px;margin-top:12px}
+.footer-col-title{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px}
+.footer-link{display:block;font-size:14px;color:var(--text-secondary);text-decoration:none;margin-bottom:10px;transition:color .2s}
+.footer-link:hover{color:var(--accent)}
+.footer-bottom{padding-top:24px;border-top:1px solid var(--border-light);display:flex;flex-direction:column;gap:12px;align-items:center}
+@media(min-width:768px){.footer-bottom{flex-direction:row;justify-content:space-between}}
+.footer-copy{font-size:12px;color:var(--text-muted)}
+.footer-legal a{font-size:12px;color:var(--text-muted);text-decoration:none}
+.footer-legal a:hover{color:var(--accent)}
+
+/* FLOATING */
+.floating-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:90;padding:12px 16px;background:rgba(250,248,245,0.95);backdrop-filter:blur(16px);border-top:1px solid var(--border-light);gap:8px}
+@media(min-width:768px){.floating-cta{display:none}}
+.floating-cta .btn-primary{flex:1;justify-content:center;font-size:13px;padding:14px 16px}
+.floating-cta .btn-outline{font-size:13px;padding:14px 16px}
+
+/* ANIM */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.hero-content{animation:fadeUp .8s ease forwards;animation-delay:.1s;opacity:0}
+.hero-visual{animation:fadeUp .8s ease forwards;animation-delay:.3s;opacity:0}
+@media(max-width:767px){.footer{padding-bottom:80px}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <img src="logo_seva.png" alt="Логотип" class="logo-icon">
+      <span class="logo-text">Студия Евгении <span>Симаковой</span></span>
+    </a>
+    <nav class="nav">
+      <a href="#projects">Проекты</a>
+      <a href="#process">Как мы работаем</a>
+      <a href="#about">О студии</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a href="#contact" class="header-cta">Обсудить проект →</a>
+    <button class="mobile-menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#projects" onclick="toggleMenu()">Проекты</a>
+  <a href="#process" onclick="toggleMenu()">Как мы работаем</a>
+  <a href="#about" onclick="toggleMenu()">О студии</a>
+  <a href="#reviews" onclick="toggleMenu()">Отзывы</a>
+  <a href="#faq" onclick="toggleMenu()">Вопросы</a>
+  <a href="#contact" onclick="toggleMenu()">Обсудить проект</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">Бутик-студия ремонта</div>
+        <h1 class="hero-title">Ремонт квартиры<br>без хаоса,<br><em>с&nbsp;вниманием</em><br>к&nbsp;деталям</h1>
+        <p class="hero-subtitle">Персональное ведение проекта, прозрачная смета и спокойный процесс. Берём на себя сложность ремонта, чтобы вы получили результат без стресса и неприятных сюрпризов.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Обсудить проект</a>
+          <a href="https://wa.me/" class="btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            Написать в WhatsApp
+          </a>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item"><div class="hero-meta-value">8+</div><div class="hero-meta-label">лет в ремонте</div></div>
+          <div class="hero-meta-item"><div class="hero-meta-value">50+</div><div class="hero-meta-label">сданных объектов</div></div>
+          <div class="hero-meta-item"><div class="hero-meta-value">100%</div><div class="hero-meta-label">проектов в срок</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="sakura_3.jpg" alt="Интерьер кухни — проект студии Евгении Симаковой">
+        <div class="hero-visual-badge">
+          <div class="hero-visual-badge-title">Проект «Сакура»</div>
+          <div class="hero-visual-badge-text">Уютная кухня с авторскими деталями</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<section class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-item"><div class="trust-value">8+</div><div class="trust-label">лет опыта</div></div>
+      <div class="trust-item"><div class="trust-value">50+</div><div class="trust-label">завершённых проектов</div></div>
+      <div class="trust-item"><div class="trust-value">2–3</div><div class="trust-label">проекта одновременно</div></div>
+      <div class="trust-item"><div class="trust-value">1 год</div><div class="trust-label">гарантия на работы</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM-SOLUTION -->
+<section class="problem-solution">
+  <div class="container">
+    <div class="ps-header">
+      <div class="section-label">Знакомая ситуация?</div>
+      <h2 class="section-title">Ремонт не должен быть испытанием</h2>
+      <p class="section-subtitle">Мы знаем, чего вы боитесь. И выстроили процесс так, чтобы этого не случилось.</p>
+    </div>
+    <div class="ps-grid">
+      <div class="ps-card ps-card--problem fade-in"><div class="ps-card-icon">😰</div><div class="ps-card-title">Хаос и неизвестность</div><div class="ps-card-text">«Что сейчас происходит на объекте? Когда закончат? Кто вообще за это отвечает?»</div></div>
+      <div class="ps-card ps-card--solution fade-in"><div class="ps-card-icon">✦</div><div class="ps-card-title">Прозрачный контроль</div><div class="ps-card-text">Регулярные фотоотчёты, понятный график работ, один человек на связи. Вы всегда знаете, что происходит.</div></div>
+      <div class="ps-card ps-card--problem fade-in"><div class="ps-card-icon">💸</div><div class="ps-card-title">Бесконечные доплаты</div><div class="ps-card-text">«Оказалось, нужно ещё докупить, переделать, пересчитать... Бюджет давно превысил план»</div></div>
+      <div class="ps-card ps-card--solution fade-in"><div class="ps-card-icon">✦</div><div class="ps-card-title">Честная смета</div><div class="ps-card-text">Детальная смета до начала работ, фиксация стоимости. Все изменения только по согласованию с вами.</div></div>
+      <div class="ps-card ps-card--problem fade-in"><div class="ps-card-icon">📅</div><div class="ps-card-title">Срыв сроков</div><div class="ps-card-text">«Обещали два месяца, а ремонт идёт уже полгода. Конца не видно»</div></div>
+      <div class="ps-card ps-card--solution fade-in"><div class="ps-card-icon">✦</div><div class="ps-card-title">Контроль сроков</div><div class="ps-card-text">Чёткий календарный план с этапами. Контроль графика на каждом этапе. Мы не растягиваем проекты.</div></div>
+      <div class="ps-card ps-card--problem fade-in"><div class="ps-card-icon">🤷</div><div class="ps-card-title">Плохая коммуникация</div><div class="ps-card-text">«Мастера не берут трубку. Прораб говорит одно, делают другое. Нервы на пределе»</div></div>
+      <div class="ps-card ps-card--solution fade-in"><div class="ps-card-icon">✦</div><div class="ps-card-title">Один контакт</div><div class="ps-card-text">Евгения лично на связи. Быстрые ответы, понятные объяснения, никаких отговорок. Мы ценим ваше спокойствие.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="foto_seva.png" alt="Евгения Симакова — руководитель студии ремонта">
+        <div class="about-photo-accent"></div>
+      </div>
+      <div class="about-content">
+        <div class="section-label">О студии</div>
+        <h2 class="about-name">Евгения Симакова</h2>
+        <div class="about-role">Руководитель студии · Менеджер проектов</div>
+        <p class="about-text">Я лично веду каждый проект от первой встречи до момента, когда вы получите ключи от готовой квартиры. Не передаю вас менеджерам, не теряюсь после подписания договора.</p>
+        <p class="about-text">У меня небольшая студия, и это осознанный выбор. Я не беру десятки объектов одновременно, потому что верю: качественный ремонт невозможен без личного контроля. Моя бригада работает со мной не первый год, и я отвечаю за результат каждого проекта.</p>
+        <div class="about-quote"><p>«Хороший ремонт -- это когда клиент спокоен, процесс понятен, а результат радует. Не больше и не меньше»</p></div>
+        <div class="about-traits">
+          <div class="about-trait">Личное ведение проекта</div>
+          <div class="about-trait">Постоянная бригада</div>
+          <div class="about-trait">Контроль качества</div>
+          <div class="about-trait">2–3 объекта максимум</div>
+          <div class="about-trait">Быстрая коммуникация</div>
+          <div class="about-trait">Внимание к деталям</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="projects">
+  <div class="container">
+    <div class="portfolio-header">
+      <div>
+        <div class="section-label">Портфолио</div>
+        <h2 class="section-title">Реализованные проекты</h2>
+        <p class="section-subtitle">Каждый проект -- это история: от задачи клиента до результата, которым можно гордиться.</p>
+      </div>
+      <a href="#contact" class="btn-outline">Обсудить свой проект →</a>
+    </div>
+
+    <div class="project-section fade-in">
+      <div class="project-name">Проект «Воздух»</div>
+      <p class="project-desc">Светлый, лёгкий интерьер с продуманной эргономикой. Тёплые натуральные оттенки, мягкий свет, аккуратные детали. Всё, чтобы дома было спокойно.</p>
+      <div class="gallery-strip">
+        <img src="vozduh_3.jpg" alt="Проект Воздух — прихожая">
+        <img src="vozduh_1.jpg" alt="Проект Воздух — ванная">
+        <img src="vozduh_2.jpg" alt="Проект Воздух — спальня">
+      </div>
+      <div class="project-detail-row">
+        <div class="project-detail"><strong>Прихожая, ванная, спальня</strong>зоны</div>
+        <div class="project-detail"><strong>Современный</strong>стиль</div>
+        <div class="project-detail"><strong>Под ключ</strong>формат</div>
+      </div>
+    </div>
+
+    <div class="project-divider"></div>
+
+    <div class="project-section fade-in">
+      <div class="project-name">Проект «Сакура»</div>
+      <p class="project-desc">Тёплая палитра, природные текстуры и внимание к каждой мелочи. Функциональное пространство, в котором приятно находиться каждый день.</p>
+      <div class="gallery-strip">
+        <img src="sakura_3.jpg" alt="Проект Сакура — кухня">
+        <img src="sakura_1.jpg" alt="Проект Сакура — санузел">
+        <img src="sakura_2.jpg" alt="Проект Сакура — балкон">
+      </div>
+      <div class="project-detail-row">
+        <div class="project-detail"><strong>Кухня, санузел, балкон</strong>зоны</div>
+        <div class="project-detail"><strong>Современный</strong>стиль</div>
+        <div class="project-detail"><strong>Под ключ</strong>формат</div>
+      </div>
+    </div>
+
+    <div class="project-divider"></div>
+
+    <div class="project-section fade-in">
+      <div class="project-name">Квартира в новостройке</div>
+      <p class="project-desc">Элегантные решения для ванной и спальни. Сочетание фактурного дерева, нейтральных тонов и дизайнерского света. Всё продумано до мелочей.</p>
+      <div class="gallery-strip">
+        <img src="project_1.jpg" alt="Проект 3 — ванная">
+        <img src="project_2.jpg" alt="Проект 3 — спальня">
+        <img src="project_3.jpg" alt="Проект 3 — санузел">
+      </div>
+      <div class="project-detail-row">
+        <div class="project-detail"><strong>Ванная, спальня, санузел</strong>зоны</div>
+        <div class="project-detail"><strong>Современная классика</strong>стиль</div>
+        <div class="project-detail"><strong>Под ключ</strong>формат</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="process-header">
+      <div class="section-label" style="color:var(--accent-light)">Как мы работаем</div>
+      <h2 class="section-title">Пять понятных шагов<br>от идеи до результата</h2>
+      <p class="section-subtitle">Каждый этап прозрачен. Вы всегда знаете, что происходит и что будет дальше.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step fade-in"><div class="process-step-number">01</div><h3 class="process-step-title">Знакомство</h3><p class="process-step-text">Созвон или встреча. Обсуждаем ваши задачи, пожелания, сроки и бюджет.</p><span class="process-step-arrow">→</span></div>
+      <div class="process-step fade-in"><div class="process-step-number">02</div><h3 class="process-step-title">Замер и план</h3><p class="process-step-text">Выезд на объект. Точные замеры, обсуждение решений, фиксация пожеланий.</p><span class="process-step-arrow">→</span></div>
+      <div class="process-step fade-in"><div class="process-step-number">03</div><h3 class="process-step-title">Смета</h3><p class="process-step-text">Детальная смета по работам и материалам. Прозрачно, без скрытых строк.</p><span class="process-step-arrow">→</span></div>
+      <div class="process-step fade-in"><div class="process-step-number">04</div><h3 class="process-step-title">Ремонт</h3><p class="process-step-text">Работа по графику. Фотоотчёты, контроль качества, Евгения на связи.</p><span class="process-step-arrow">→</span></div>
+      <div class="process-step fade-in"><div class="process-step-number">05</div><h3 class="process-step-title">Сдача</h3><p class="process-step-text">Приёмка объекта, проверка по чек-листу, передача гарантии.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="reviews-header">
+      <div class="section-label">Отзывы</div>
+      <h2 class="section-title">Что говорят клиенты</h2>
+      <p class="section-subtitle">Настоящие отзывы от людей, которые прошли с нами весь путь.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-in">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Первый ремонт, который не превратился в кошмар. Евгения всё объясняла, присылала фото, предупреждала обо всём заранее. Результат превзошёл ожидания.»</p>
+        <div class="review-author"><div class="review-avatar">А</div><div><div class="review-author-name">Анна и Дмитрий</div><div class="review-author-project">Двухкомнатная, 62 м²</div></div></div>
+      </div>
+      <div class="review-card fade-in">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Меня подкупило то, что Евгения не обещала золотые горы. Честно рассказала, что реально, что нет. Смета совпала с итоговой суммой почти рубль в рубль.»</p>
+        <div class="review-author"><div class="review-avatar">М</div><div><div class="review-author-name">Михаил</div><div class="review-author-project">Студия, 38 м²</div></div></div>
+      </div>
+      <div class="review-card fade-in">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Мы живём в другом городе и боялись делать ремонт удалённо. Но Евгения вела проект так, что мы были спокойны. Фотоотчёты, видеозвонки, полный контроль.»</p>
+        <div class="review-author"><div class="review-avatar">Е</div><div><div class="review-author-name">Елена</div><div class="review-author-project">Трёхкомнатная, 85 м²</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us">
+  <div class="container">
+    <div class="why-us-header">
+      <div class="section-label">Преимущества</div>
+      <h2 class="section-title">Почему выбирают нашу студию</h2>
+    </div>
+    <div class="why-us-grid">
+      <div class="why-card fade-in"><div class="why-card-icon">👤</div><h3 class="why-card-title">Личный контроль</h3><p class="why-card-text">Евгения лично присутствует на объекте, контролирует качество и соблюдение проекта. Не через посредников.</p></div>
+      <div class="why-card fade-in"><div class="why-card-icon">🎯</div><h3 class="why-card-title">Мало проектов</h3><p class="why-card-text">Не более 2–3 объектов одновременно. Это значит, что ваш проект получает максимум внимания.</p></div>
+      <div class="why-card fade-in"><div class="why-card-icon">📋</div><h3 class="why-card-title">Прозрачная смета</h3><p class="why-card-text">Каждая позиция расписана. Никаких «допов», которые появляются в процессе без вашего ведома.</p></div>
+      <div class="why-card fade-in"><div class="why-card-icon">🔧</div><h3 class="why-card-title">Проверенная бригада</h3><p class="why-card-text">Постоянная команда мастеров, с которыми работаем не первый год. Мы знаем их уровень.</p></div>
+      <div class="why-card fade-in"><div class="why-card-icon">💬</div><h3 class="why-card-title">Понятная коммуникация</h3><p class="why-card-text">Отвечаем в мессенджерах, присылаем фотоотчёты, предупреждаем обо всём заранее. Без тишины и сюрпризов.</p></div>
+      <div class="why-card fade-in"><div class="why-card-icon">🛡️</div><h3 class="why-card-title">Гарантия на работы</h3><p class="why-card-text">Даём гарантию на выполненные работы. Если что-то пойдёт не так, мы исправим за свой счёт.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-grid">
+      <div>
+        <div class="section-label">Стоимость</div>
+        <h2 class="section-title">Честный подход к бюджету</h2>
+        <p class="section-subtitle">Мы не называем цену «от 5000 за м²» без осмотра объекта. Стоимость зависит от реальных условий вашей квартиры.</p>
+        <ul class="pricing-list">
+          <li>Бесплатная консультация и выезд на замер</li>
+          <li>Детальная смета до начала работ</li>
+          <li>Фиксация стоимости в договоре</li>
+          <li>Никаких скрытых платежей и «допов»</li>
+          <li>Поэтапная оплата по факту выполнения</li>
+          <li>Помощь в подборе материалов в рамках бюджета</li>
+        </ul>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.6">Стоимость зависит от площади, состояния квартиры, объёма работ и выбранных материалов. Точную стоимость рассчитаем после замера.</p>
+      </div>
+      <div class="pricing-card">
+        <h3 class="pricing-card-title">Узнайте стоимость<br>вашего ремонта</h3>
+        <p class="pricing-card-text">Оставьте заявку, и мы рассчитаем стоимость ремонта для вашей квартиры. Консультация и замер бесплатно.</p>
+        <a href="#contact" class="btn-primary">Рассчитать стоимость</a>
+        <p class="pricing-card-note">Без обязательств. Замер и консультация бесплатно.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-header">
+      <div class="section-label">Вопросы и ответы</div>
+      <h2 class="section-title">Частые вопросы</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-question">Сколько длится ремонт?</button><div class="faq-answer"><p>Зависит от объёма. Косметический ремонт студии занимает от 1.5 месяцев, капитальный ремонт двух-трёхкомнатной квартиры обычно 3–4 месяца. Точные сроки фиксируем в договоре.</p></div></div>
+      <div class="faq-item"><button class="faq-question">Как формируется смета?</button><div class="faq-answer"><p>После замера составляем детальную смету по каждому виду работ и помещению. Вы видите каждую позицию. Стоимость фиксируется в договоре и не меняется, если не меняются ваши пожелания.</p></div></div>
+      <div class="faq-item"><button class="faq-question">Можно ли со своим дизайн-проектом?</button><div class="faq-answer"><p>Конечно. Работаем как по вашему дизайн-проекту, так и помогаем с планировочными решениями и подбором материалов, если дизайн-проекта нет.</p></div></div>
+      <div class="faq-item"><button class="faq-question">Как контролируется качество?</button><div class="faq-answer"><p>Евгения регулярно присутствует на объекте и контролирует выполнение работ. Каждый этап принимается по чек-листу, прежде чем переходить к следующему. Фотоотчёты отправляем в мессенджер.</p></div></div>
+      <div class="faq-item"><button class="faq-question">Что если изменятся пожелания в процессе?</button><div class="faq-answer"><p>Это нормально. Мы обсуждаем изменения, оцениваем влияние на сроки и стоимость, и согласовываем с вами до начала работ. Без сюрпризов в чеке.</p></div></div>
+      <div class="faq-item"><button class="faq-question">Работаете ли вы под ключ?</button><div class="faq-answer"><p>Да. Полный цикл: от демонтажа до чистовой отделки, установки сантехники, дверей, освещения. Помогаем с подбором и закупкой материалов.</p></div></div>
+      <div class="faq-item"><button class="faq-question">Как проходит оплата?</button><div class="faq-answer"><p>Поэтапно. Аванс перед началом, далее оплата по завершении каждого этапа. Вы платите за результат, а не за обещания.</p></div></div>
+      <div class="faq-item"><button class="faq-question">Есть ли гарантия?</button><div class="faq-answer"><p>Да, даём гарантию на выполненные работы. Если в гарантийный период что-то пойдёт не так, мы исправим за свой счёт.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="contact">
+  <div class="container">
+    <div class="final-cta-inner">
+      <h2 class="final-cta-title">Готовы обсудить<br>ваш проект?</h2>
+      <p class="final-cta-subtitle">Оставьте заявку или напишите в мессенджер. Ответим в течение дня. Консультация и замер бесплатно.</p>
+      <div class="final-cta-form">
+        <input type="text" placeholder="Ваше имя">
+        <input type="tel" placeholder="Телефон">
+        <button class="btn-primary" type="button">Отправить заявку</button>
+      </div>
+      <div class="final-cta-or">или напишите нам</div>
+      <div class="final-cta-messengers">
+        <a href="https://wa.me/" class="messenger-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.555 4.122 1.523 5.857L0 24l6.335-1.652A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.922 0-3.749-.53-5.335-1.497l-.383-.228-3.762.982.998-3.648-.25-.398A9.797 9.797 0 0 1 2.182 12c0-5.423 4.395-9.818 9.818-9.818 5.423 0 9.818 4.395 9.818 9.818 0 5.423-4.395 9.818-9.818 9.818z"/></svg> WhatsApp</a>
+        <a href="https://t.me/" class="messenger-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg> Telegram</a>
+        <a href="tel:+7" class="messenger-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Позвонить</a>
+      </div>
+      <p class="final-cta-safe">Мы не передаём ваши данные третьим лицам</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo"><img src="logo_seva.png" alt="Логотип" class="logo-icon"><span class="logo-text">Студия Евгении <span>Симаковой</span></span></a>
+        <p class="footer-brand-text">Бутик-студия ремонта квартир с персональным подходом. Новосибирск.</p>
+      </div>
+      <div><div class="footer-col-title">Навигация</div><a href="#projects" class="footer-link">Проекты</a><a href="#process" class="footer-link">Как мы работаем</a><a href="#about" class="footer-link">О студии</a><a href="#reviews" class="footer-link">Отзывы</a></div>
+      <div><div class="footer-col-title">Контакты</div><a href="tel:+7" class="footer-link">+7 (XXX) XXX-XX-XX</a><a href="mailto:" class="footer-link">email@studio.ru</a><a href="#" class="footer-link">WhatsApp</a><a href="#" class="footer-link">Telegram</a></div>
+      <div><div class="footer-col-title">Город</div><span class="footer-link" style="cursor:default">Новосибирск</span></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Студия ремонта Евгении Симаковой</span>
+      <div class="footer-legal"><a href="#">Политика конфиденциальности</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="floating-cta">
+  <a href="#contact" class="btn-primary">Оставить заявку</a>
+  <a href="https://wa.me/" class="btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+</div>
+
+<script>
+function toggleMenu(){document.getElementById('mobileNav').classList.toggle('active')}
+document.querySelectorAll('.faq-question').forEach(b=>{b.addEventListener('click',()=>{const i=b.parentElement;const w=i.classList.contains('active');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('active'));if(!w)i.classList.add('active')})});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
